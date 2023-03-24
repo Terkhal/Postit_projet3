@@ -7,13 +7,13 @@ defineProps({
 
   title: {
     type: String,
-    required:true
+    
 
   },
 
   content: {
     type: Array,
-    required:true
+    
 
   }
 

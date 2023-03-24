@@ -18,12 +18,12 @@
   let content="";
     
   function editPost(id,titlepost,contentpost) {
-
+console.log(this.content, "vs" ,contentpost)
 if(this.title == ""){
     this.title = titlepost;
 }
 if(this.content == ""){
-    this.content = contentpost;
+    this.content = contentpost[0];
 }
 
 console.log("post: ",this.title," old: ",titlepost)
@@ -45,6 +45,7 @@ console.log("post: ",this.title," old: ",titlepost)
 	return Promise.reject(response);
 }).then(function (data) {
 	 console.log(data);
+     window.location.href = '/postit/id='+id
    
 }).catch(function (error) {
 	console.warn('invalid query', error);

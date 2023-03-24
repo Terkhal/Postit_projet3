@@ -5,22 +5,68 @@ import Read from './components/PostItRead.vue'
 import Form from './components/PostForm.vue'
 import ArrayPost from './components/ArrayPost.vue'
 import { ref } from 'vue';
+import { onMounted } from 'vue';
 //import array from './components/ArrayPost.vue'
 
-
-const url = "http://mattmcm.fr:7754/notes";
-let notes = ref([])
- fetch(url)
- .then((response) => response.json())
-  .then((data) => { 
-    
-    notes.value = data.notes
-    console.log(notes);  
-  }
-  )
-
-
+// onMounted(() => {
+//   document.querySelector("#app > header")
   
+//  let postitarea = document.getElementsByClassName("post");
+//  let postitclick = document.querySelectorAll("post")
+//  postitclick.addEventListener('click', function(){
+//   document.getElementsByTagName("header")[0].style.backgroundColor= "black";
+
+
+
+//  })
+// })
+
+
+let testdis = document.getElementById('app').style.display = "";
+console.log(testdis)
+let prout = ref([])
+let test = {
+  id: '',
+  title: '',
+  content: []
+};
+
+
+ function getTitle(value){
+
+  test.title = value ;
+  console.log(value)
+
+} 
+
+
+function getContent(value){
+  test.content = value ;
+  console.log(value)
+  
+}
+
+function getId(value){
+  test.id = value ;
+  console.log(value)
+  
+}
+
+function feedarray(){
+
+  let tut = {
+    _id: test.id,
+    title: test.title,
+    content: [test.content],
+  }
+  
+
+   prout.value.push(tut)
+
+  console.log("feedarray:",tut)
+}
+
+
 
 
 </script>
@@ -30,24 +76,25 @@ let notes = ref([])
   <header>
   
    
-
     <div class="wrapper">
       <div> <nav>
 
       </nav></div>
+        
+        <Read msgread="Post-it display" />
+        <Form @title="getTitle" @content="getContent" @id="getId" @feedarray="feedarray"/>
+        <div class="arraypost">
+        <ArrayPost :titlef="prout" />
+        
+      </div>
+      </div>
+  
+  
+    </header>
 
-      <Read msgread="Post-it display" />
-      <Form />
-      <ArrayPost />
-      
-     
-    </div>
- 
-  </header>
-
-
-  <RouterView />
-
+<div>
+    <RouterView />
+  </div>
 
 
 
@@ -56,6 +103,12 @@ let notes = ref([])
 
 <style scoped>
 
+
+
+
+.arraypost{
+  display: contents;
+}
 .Fixed
 {
   position: -webkit-sticky; /* Safari */
@@ -68,7 +121,7 @@ let notes = ref([])
 width: 100px;
 height: 22px;
 text-overflow: ellipsis;
-overflow: hidden;
+/* overflow: hidden; */
 white-space: nowrap;
 
 }
@@ -77,7 +130,8 @@ white-space: nowrap;
 header {
   line-height: 1.5;
   max-height: 100vh;
-  width: 900px;
+  width: 1000px;
+ 
 }
  td{
   border: 1px black solid

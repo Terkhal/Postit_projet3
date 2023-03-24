@@ -14,9 +14,7 @@
 .then(res => res.json()) // or res.json()
 .then(res => console.log(res))
 
-this.$router
-          .push({ path: '/' })
-          .then(() => { this.$router.go() })
+window.location.href = '/'
 
   }
 

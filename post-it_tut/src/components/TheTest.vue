@@ -6,7 +6,7 @@ import PostitIcon from './icons/IconPostit.vue'
 <template>
   <TestItem>
     <template #prout> <PostitIcon /> </template>
-    <template #heading>This will be post-it title prout prout</template>
+    <template #heading>This side will display your post it.</template>
    <template #postit>This wille be the body of the post-it in a template</template>
   </TestItem>
 </template>
